@@ -128,6 +128,7 @@ angular.module('starter.controllers', [])
         });
     },0);
     $scope.agendalist = agendaService.getParsingData();
+    console.log($scope.agendalist);
   }
   $scope.getData();
   $scope.openinbrowser = function(url){
@@ -203,7 +204,7 @@ angular.module('starter.controllers', [])
         navigator.notification.alert("An error occurred while logging out.",null,"Alert","Close");
       })
   };
-
+  console.log(window.localStorage.getItem("favourites"));
 })
 
 // .controller('LoginCtrl',function ($scope, $rootScope,$ionicModal, $timeout, $location, $state, $ionicHistory, $ionicLoading, ngFB) {
