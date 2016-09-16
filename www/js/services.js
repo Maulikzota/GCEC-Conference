@@ -182,39 +182,52 @@ angular.module('starter.services', [])
     }
     return null;
   };
-  this.getAgendaDetail=function(id){
+  this.getParsingData=function(){
+    console.log("Parsing");
     var spkidlist=[];
     var list;
     var init = 5;
     for(var i=0;i<_agenda.length;i++){
-      if(_agenda[i].id == id){
-        _agenda[i]['content']=JSON.parse(_agenda[i]['content']);
-        _agenda[i]['session_date']=parseInt(_agenda[i]['session_date'])+86400;
-        // _agenda[i]['session_date']=parseInt(_agenda[i]['session_date']);
-        list = _agenda[i]['session_speakers_list'];
-        if(list!=undefined) {
-          var list1 = list.split(':');
-          for (var k = 5, j = list1.length; k < j; k++) {
-            if (k==init){
-              var spkid=$filter('limitTo')(list1[k],4,1);
-              var speak = speakerService.getSpeaker(spkid);
-              spkidlist.push(speak);
-              init+=3;
-            }
+      _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
+      _agenda[i]['session_date'] = parseInt(_agenda[i]['session_date']) + 86400;
+      list = _agenda[i]['session_speakers_list'];
+      if(list!=undefined) {
+        var list1 = list.split(':');
+        for (var k = 5, j = list1.length; k < j; k++) {
+          if (k==init){
+            var spkid=$filter('limitTo')(list1[k],4,1);
+            var speak = speakerService.getSpeaker(spkid);
+            spkidlist.push(speak);
+            init+=3;
           }
-          _agenda[i].speakerlist = spkidlist;
         }
-        else{
-          console.log("In error.");
-          _agenda[i].speakerlist = [];
-        }
-        // console.log(_agenda[i].speakerlist.length);
-        // // console.log("Length: "+list.length) || list.length!=0
-        // console.log("Type: "+list!=undefined);
+        _agenda[i].speakerlist = spkidlist;
+      }
+      else{
+        _agenda[i].speakerlist =[];
+      }
+    }
+    return _agenda;
+  }
+  this.getAgendaDetail=function(id){
+    for(i=0;i<_agenda.length;i++){
+      if(_agenda[i].id == id){
         return _agenda[i];
       }
     }
     return null;
+    // var spkidlist=[];
+    // var list;
+    // var init = 5;
+    // for(var i=0;i<_agenda.length;i++){
+    //   if(_agenda[i].id == id){
+    //     _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
+    //     _agenda['session_date'] = parseInt(_agenda[i]['session_date']) + 86400;
+    //
+    //     return _agenda[i];
+    //   }
+    // }
+    // return null;
   };
   this.getSingleAgenda=function (id) {
     for(i=0;i<_agenda.length;i++){
@@ -332,7 +345,7 @@ angular.module('starter.services', [])
        for (m = 0, n = speaklist[k].length; m < n; m++) {
          var speakerdata =[];
          speakerdata= this.getSpeaker(speaklist[k][m]);
-         console.log(speakerdata);
+         // console.log(speakerdata);
          if(speakerdata!=null){
            speakerarr[count].speaklist.push(speakerdata);
            _updatedspeakers.push(speakerdata);
