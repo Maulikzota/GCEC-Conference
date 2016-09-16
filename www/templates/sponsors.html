@@ -1,0 +1,19 @@
+<ion-view view-title="Sponsors">
+  <ion-content>
+    <!--<ion-list>-->
+      <!--<ion-item ng-repeat="sponsor in sortedsponsor" class="item-text-wrap" href="#/app/sponsors/{{sponsor.id}}">-->
+        <!--{{sponsor.title}}-->
+    <!--</ion-list>-->
+    <div ng-repeat="sponsors in sortedsponsor">
+      <ion-item class="item-divider wrapping-list" >
+        {{sponsors.tier}}
+      </ion-item>
+      <ion-list>
+        <ion-item class="wrapping-list" ng-repeat="sponsor in sponsors.sponsorsdata" href="#/app/sponsors/{{sponsor.id}}">
+          {{sponsor.title}}
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,23 @@
+<!--<ion-header-bar>-->
+  <!--<div class="buttons">-->
+    <!--<button class="button" href="#/app/home" style="float: right;margin-right: 10px;width: auto;">Home</button>-->
+  <!--</div>-->
+<!--</ion-header-bar>-->
+<!--<ion-nav-buttons side="right">-->
+  <!--<button class="button" href="#/app/home" style="fmargin-right: 10px;width: auto;">-->
+    <!--Home href="#/app"-->
+<!--</button>-->
+<!--</ion-nav-buttons>-->
+<ion-view view-title={{sponsor.title}}>
+    <ion-nav-buttons side="right">
+      <a class="button bar-balanced" ng-click="returnHome()">Home
+      </a>
+    </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <!--<a href="{{sponsor.sponsor_link}}">-->
+      <img ng-src="{{sponsor.image}}" class="fullscreen-image" ng-click="LinkBrowser('{{sponsor.sponsor_link}}')"/>
+      <!--</a>-->
+    </ion-list>
+  </ion-content>
+</ion-view>

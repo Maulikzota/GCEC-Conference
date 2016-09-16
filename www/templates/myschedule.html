@@ -1,0 +1,66 @@
+<!--<!--<ion-toggle ng-model="shouldShowDelete">-->
+<!--Show Delete-->
+<!--</ion-toggle>-->-->
+<ion-view view-title="My Schedule">
+  <ion-content class="content-below">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+
+    <!--<ion-list>-->
+    <!--<div collection-repeat="item in AgendaList |currentformat " divider-collection-repeat>-->
+      <!--<ion-item>-->
+        <!--<div>{{ item.title}}</div>-->
+        <!--<div>{{ item.session_time | dformat }}</div>-->
+      <!--</ion-item>-->
+    <!--</div>-->
+    <!--</ion-list>-->
+
+    <!--<ion-list ng-repeat="(key, value) in AgendaList | groupBy:'session_date'">-->
+      <!--<div class="item item-divider">-->
+        <!--<h1> {{key}}</h1>-->
+      <!--</div>-->
+      <!--<ion-item-divider class="item item-divider" ng-repeat="list in AgendaList">-->
+        <!--{{list.day}}-->
+        <!--<ion-list class="item" ng-repeat="agenda in list.agenda" bindonce href="#/app/bookmarks/{{agenda.id}}" class="wrapping-list">-->
+          <!--{{agenda.session_time | dformat}} - {{agenda.title}}-->
+          <!--<ion-option-button class="button-positive" ng-click="del(agenda.id)">Delete</ion-option-button>-->
+        <!--</ion-list>-->
+      <!--<ion-item-divider>-->
+
+        <div ng-repeat="list in AgendaList">
+          <ion-item class="item-divider">
+            {{list.day}}
+          </ion-item>
+          <ion-list>
+            <ion-item class="wrapping-list" ng-repeat="agenda in list.agenda" href="#/app/myschedule/{{agenda.id}}" >
+            {{agenda.session_time | dformat}} - {{agenda.title}}
+            <ion-option-button class="button-positive" ng-click="del(agenda.id)">Delete</ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+
+
+
+
+
+      <!--<ion-item class="wrapping-list" ng-repeat="agenda in value" href="#/app/bookmarks/{{agenda.id}}">-->
+        <!--&lt;!&ndash;<img src="media/thumbnails/{{event.id}}.jpg">&ndash;&gt;-->
+        <!--{{agenda.title}}-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+
+    <!--<ion-list>-->
+      <!--<ion-item ng-repeat="agenda in AgendaList" href="#/app/bookmarks/{{agenda.id}}" class="wrapping-list">-->
+        <!--{{agenda.session_time | dformat}} - {{agenda.title}}-->
+        <!--<ion-option-button class="button-positive" ng-click="del(agenda.id)">Delete</ion-option-button>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+
+    <!--<ion-toggle ng-model="shouldShowDelete">-->
+      <!--Show Delete?-->
+    <!--</ion-toggle>-->
+      <!--</ion-item-divider>-->
+  </ion-content>
+</ion-view>
+
+
+<!--ng-repeat="singleAgendaItem"-->

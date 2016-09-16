@@ -1,0 +1,87 @@
+<ion-view view-title="Conference Schedule">
+  <!--<ion-content class="content-below">-->
+    <!--<ion-list>-->
+      <!--<ion-item ng-repeat="agenda in agendadata">-->
+        <!--The day is: {{agenda}}-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+  <!--</ion-content>-->
+<!--</ion-view>-->
+
+  <ion-content class="content-below">
+    <ion-list>
+      <ion-item ng-repeat="singleday in dayofWeek" href="#/app/agenda/{{singleday.did}}">
+        {{singleday.day}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+  <!--<ion-content>-->
+    <!--&lt;!&ndash;<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>&ndash;&gt;-->
+    <!--<ion-segment ng-reflect-model="session" class="ng-untouched ng-valid ng-dirty">-->
+      <!--<ion-segment-button class="segment-button segment-activated" role="button"-->
+                          <!--tappable value="category" ng-reflect-value="category" aria prssed>-->
+        <!--Category-->
+      <!--</ion-segment-button>-->
+      <!--<ion-segment-button class="segment-button" role="button"-->
+                          <!--tappable value="category" ng-reflect-value="category">-->
+        <!--Date-->
+      <!--</ion-segment-button>-->
+      <!--<ion-segment-button class="segment-button" role="button"-->
+                          <!--tappable value="category" ng-reflect-value="category">-->
+        <!--Venue-->
+      <!--</ion-segment-button>-->
+    <!--</ion-segment>-->
+    <!--<div ng-reflect-ng-switch="category">-->
+      <!--<ion-list>-->
+        <!--<ion-item ng-repeat="agenda in agendadata" href="#/app/agenda/{{agenda.id}}">-->
+          <!--{{agenda.title}}-->
+        <!--</ion-item>-->
+        <!--This is the list thtat is chencked............-->
+      <!--</ion-list>-->
+    <!--</div>-->
+    <!--<div ng-reflect-ng-switch="date">-->
+      <!--&lt;!&ndash;<ion-list>&ndash;&gt;-->
+      <!--&lt;!&ndash;<ion-item ng-repeat="agenda in agendadata" href="#/app/agenda/{{agenda.id}}">&ndash;&gt;-->
+      <!--&lt;!&ndash;{{agenda.title}}&ndash;&gt;-->
+      <!--&lt;!&ndash;</ion-item>&ndash;&gt;-->
+      <!--&lt;!&ndash;</ion-list>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div ng-reflect-ng-switch="venue">-->
+      <!--&lt;!&ndash;<ion-list>&ndash;&gt;-->
+      <!--&lt;!&ndash;<ion-item ng-repeat="agenda in agendadata" href="#/app/agenda/{{agenda.id}}">&ndash;&gt;-->
+      <!--&lt;!&ndash;{{agenda.title}}&ndash;&gt;-->
+      <!--&lt;!&ndash;</ion-item>&ndash;&gt;-->
+      <!--&lt;!&ndash;</ion-list>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</ion-content>-->
+
+
+
+
+<!--&lt;!&ndash;<ion-view view-title="Timeline">&ndash;&gt;-->
+  <!--<ion-content class="padding">-->
+    <!--<img src="img/autumn.jpg" class="img" ng-style="{height:'250px'}"/>-->
+    <!--<section id="cd-timeline" class="cd-container">-->
+      <!--<div ng-repeat="agenda in agendadata">-->
+        <!--<div class="cd-timeline-block">-->
+          <!--&lt;!&ndash; CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... &ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="cd-timeline-picture dark">&ndash;&gt;-->
+          <!--&lt;!&ndash;<img ng-src="/img/{{activity.profilePicture}}"></img>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash; CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... &ndash;&gt;&ndash;&gt;-->
+          <!--<div class="cd-timeline-content dark">-->
+            <!--<h5 class="marginBottom0 marginTop0" ng-click="click1($event,agenda.id)">{{agenda.title}}</h5>-->
+            <!--<p class="timelineText" ng-show="show1"><span id="a+{{agenda.id}}">{{agenda.content}}</span>-->
+            <!--</p>-->
+            <!--<p class="marginTop5 cd-author" ng-show="show1"><span id="b+{{agenda.id}}">on-->
+              <!--{{agenda.session_date * 1000| amCalendar:referenceTime:formats }}-->
+               <!--starting at {{agenda.session_time}} and ending at {{agenda.session_end_time }}</span>-->
+            <!--</p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</section>-->
+  <!--</ion-content>-->
+<!--</ion-view>-->

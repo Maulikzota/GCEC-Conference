@@ -1,0 +1,18 @@
+<ion-view view-title={{speaker.title}}>
+  <ion-nav-buttons side="right">
+    <a class="button bar-balanced" ng-click="returnHome()">Home
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-text-wrap">
+       <img src="{{speaker.image}}" style="height: 200px;width: 200px;align-content: center" >
+        <br/>
+      {{speaker.content}}
+      </ion-item>
+      <ion-item>
+        {{speaker.speaker_title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

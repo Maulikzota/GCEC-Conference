@@ -1,0 +1,69 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="title-color">
+      <ion-nav-back-button class="button">
+        <i class="ion-arrow-left-c"></i> Back
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon ion-navicon" menu-toggle="left" ng-click="check()">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-toggle href="#/app/home">
+          Home
+        </ion-item>
+        <ion-item menu-toggle href="#/app/agenda">
+          Agenda
+        </ion-item>
+        <ion-item menu-toggle href="#/app/speakers">
+          Speakers
+        </ion-item>
+        <!--<ion-item menu-close href="#/app/attendees">-->
+          <!--Attendees-->
+        <!--</ion-item>-->
+        <ion-item menu-toggle href="#/app/sponsors">
+          Sponsors
+        </ion-item>
+        <ion-item menu-toggle href="#/app/exhibitors">
+          Exhibitors
+        </ion-item>
+        <!--<ion-item menu-close href="#/app/infobooth">-->
+          <!--Info Booth-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/sdocuments">-->
+          <!--Sponser Documents-->
+        <!--</ion-item>-->
+        <!--<ion-item menu-close href="#/app/travel">-->
+          <!--Travel & Hotels-->
+        <!--</ion-item>-->
+        <ion-item menu-toggle href="#/app/myschedule">
+          My Schedule
+        </ion-item>
+        <!--<span ng-click="check()">-->
+        <ion-item menu-toggle ng-click="login()">
+          Facebook
+        </ion-item>
+        <ion-item menu-toggle ng-hide="flogin" href="#/app/profile">
+          Profile
+        </ion-item>
+          <!--</span>-->
+        <!--<ion-item menu-close href="#/app/maps">-->
+          <!--Maps-->
+        <!--</ion-item>-->
+        <ion-item menu-toggle href="#/app/about">
+          About Us
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

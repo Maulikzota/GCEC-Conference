@@ -1,0 +1,44 @@
+<ion-modal-view class="modal">
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-item ng-show=flogin>
+      <button class="button button-block button-positive" ng-click="fbLogin()">
+        Login with Facebook
+      </button>
+    </ion-item>
+    <ion-item ng-hide=flogin>
+      <button class="button button-block button-positive" ng-click=logout()>
+        Logout from Facebook
+      </button>
+    </ion-item>
+
+    <!--<form ng-submit="doLogin()">-->
+      <!--<div class="list">-->
+        <!--&lt;!&ndash;<label class="item item-input">&ndash;&gt;-->
+          <!--<span class="input-label">Username</span>-->
+          <!--<input type="text" ng-model="loginData.username">-->
+        <!--</label>-->
+        <!--<label class="item item-input">-->
+          <!--<span class="input-label">Password</span>-->
+          <!--<input type="password" ng-model="loginData.password">-->
+        <!--</label>-->
+        <!--<label class="item">-->
+          <!--<button class="button button-block button-positive" type="submit">Log in</button>-->
+        <!--</label>-->
+        <!--<label class="item">-->
+          <!--<button class="button button-block button-positive" ng-click="fbLogin()" ng-show=check()>-->
+            <!--Login with Facebook-->
+          <!--</button>-->
+          <!--<button class="button button-block button-positive" ng-click=logout() ng-hide=check()>-->
+            <!--Logout from Facebook-->
+          <!--</button>-->
+        <!--</label>-->
+      <!--</div>-->
+    <!--</form>-->
+  </ion-content>
+</ion-modal-view>

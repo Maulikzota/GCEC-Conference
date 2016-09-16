@@ -1,0 +1,35 @@
+ <ion-view view-title="{{agendaItem.title}}">
+   <ion-nav-buttons side="right">
+     <a class="button bar-balanced" ng-click="returnHome()">Home
+     </a>
+   </ion-nav-buttons>
+      <ion-content>
+          <div class="urback">
+          <ion-list>
+            <ion-item>Date: {{agendaItem.session_date *1000 | date:'MM-dd-yyyy'}}</ion-item>
+            <ion-item>Start Time: {{agendaItem.session_time| dformat}}</ion-item>
+            <ion-item>End Time: {{agendaItem.session_end_time | dformat}}</ion-item>
+            <ion-item class="wrapping-list"> Location: {{agendaItem.location}}</ion-item>
+            <div ng-show=spkcheck>
+              <div class="item item-divider">
+                Speakers for the session
+              </div>
+              <ion-item ng-repeat="speaker in agendaItem.speakerlist" href="#/app/speakers/{{speaker.id}}">
+                {{speaker.title}}
+              </ion-item>
+            </div>
+              <ion-item class="wrapping-list">
+                Content: <span ng-bind-html="agendaItem.content">
+              </span></ion-item>
+               <ion-item ng-click="fav(agendaItem.id)"> Add to your Schedule.
+              </ion-item>
+            </ion-list>
+          </ion-list>
+          </div>
+      </ion-content>
+    </ion-view>
+    <!--date: 'yyyy-MM-dd HH:mm:ss'}}" -->
+    <span ng-bind-html="agendaItem.session_time"></span>
+    <span ng-bind-html=""></span>
+  </ion-content>
+</ion-view>
