@@ -11,7 +11,7 @@ angular.module('starter.services', [])
   _self = this;
   this.getAgenda=function(){
     var deferred = $q.defer();
-    $http.get("https://www-staging.rit.edu/gcec2016/gcec2016feed.php?which=session")
+    $http.get("https://www.rit.edu/gcec2016/gcec2016feed.php?which=session")
       .success(function (response) {
         deferred.resolve(response);
         _agenda=response;
@@ -286,7 +286,7 @@ angular.module('starter.services', [])
 
   this.getSpeakerCategory=function () {
     var deferred = $q.defer();
-    $http.get("https://www-staging.rit.edu/gcec2016/gcec2016feed.php?which=speaker&categories=yes")
+    $http.get("https://www.rit.edu/gcec2016/gcec2016feed.php?which=speaker&categories=yes")
       .success(function (response) {
         deferred.resolve(response);
         _speakerscat=response;
@@ -419,7 +419,7 @@ angular.module('starter.services', [])
 
   this.getSponsors=function(){
     var deferred = $q.defer();
-    $http.get("https://www-staging.rit.edu/gcec2016/gcec2016feed.php?which=sponsor")
+    $http.get("https://www.rit.edu/gcec2016/gcec2016feed.php?which=sponsor")
       .success(function (response) {
         deferred.resolve(response);
         _sponsors=response;
