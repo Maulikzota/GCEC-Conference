@@ -436,87 +436,6 @@ angular.module('starter.services', [])
       }
     }
 
-    var speaklist = [];
-    var speakerarr=[];
-    angular.forEach(_speakerscat,function (value,key) {
-      speaklist.push(value);
-    });
-    for (i=0,j=speaklist.length;i<j;i++){
-      speaklist[i] = speaklist[i].split(',');
-    }
-    var count=0;
-    for (k=0,l=speaklist.length;k<l;k++){
-      if(k%2==1) {
-        speakerarr[count]={category: speaklist[k-1][0],speaklist:[]};
-        for (m = 0, n = speaklist[k].length; m < n; m++) {
-          var speakerdata =[];
-          speakerdata= this.getSpeaker(speaklist[k][m]);
-          // console.log(speakerdata);
-          if(speakerdata!=null){
-            speakerarr[count].speaklist.push(speakerdata);
-            _updatedspeakers.push(speakerdata);
-          }
-        }
-        count++;
-      }
-    }
-    // console.log(speakerarr);
-    for(i=0,j=speakerarr.length;i<j;i++){
-      speakerarr[i].speaklist = sortbyLname(speakerarr[i].speaklist);
-    }
-    _speakerssorted=speakerarr;
-    // console.log(_speakerssorted);
-    var speaker = _updatedspeakers;
-    // _speakers;
-    // var speakerarr = {};
-    var sortedarr = [];
-    var ucount=0;
-    var speakcount;
-    var check = function (array,key) {
-      if(array.length!=0){
-        for(var i=0,j=array.length;i<j;i++){
-          if(array[i].university == key){
-            speakcount=i;
-            return false;
-          }
-        }
-        return true;
-      }else{
-        return true;
-      }
-    }
-    for(var i=0;i<speaker.length;i++){
-      var uni = $filter('uppercase')(speaker[i]['speaker_title']);
-      if( uni===undefined || uni.length!=0) {
-        if(check(sortedarr,uni)){
-          sortedarr[ucount]={university:uni,speakerdata:[]};
-          sortedarr[ucount].speakerdata.push(speaker[i]);
-          ucount++;
-        }else{
-          sortedarr[speakcount].speakerdata.push(speaker[i]);
-        }
-      }else{
-        uni = "UNIVERSITY NOT SPECIFIED";
-        if(check(sortedarr,uni)){
-          sortedarr[ucount]={university:uni,speakerdata:[]};
-          sortedarr[ucount].speakerdata.push(speaker[i]);
-          ucount++;
-        }else{
-          sortedarr[speakcount].speakerdata.push(speaker[i]);
-        }
-
-      }
-    }
-    for(var k=0,l=sortedarr.length;k<l;k++) {
-      sortedarr[k].speakerdata = sortbyLname(sortedarr[k].speakerdata);
-    }
-    sortedarr = sortingByKey(sortedarr,'university');
-    _universityspeaker=sortedarr;
-    // console.log(_universityspeaker);
-    return _universityspeaker;
-  }
-  this.getSortedSpeaker=function(){
-    // // var speaker = _speakers;
     // var speaklist = [];
     // var speakerarr=[];
     // angular.forEach(_speakerscat,function (value,key) {
@@ -527,38 +446,26 @@ angular.module('starter.services', [])
     // }
     // var count=0;
     // for (k=0,l=speaklist.length;k<l;k++){
-    //  if(k%2==1) {
-    //    speakerarr[count]={category: speaklist[k-1][0],speaklist:[]};
-    //    for (m = 0, n = speaklist[k].length; m < n; m++) {
-    //      var speakerdata =[];
-    //      speakerdata= this.getSpeaker(speaklist[k][m]);
-    //      // console.log(speakerdata);
-    //      if(speakerdata!=null){
-    //        speakerarr[count].speaklist.push(speakerdata);
-    //        _updatedspeakers.push(speakerdata);
-    //      }
-    //    }
-    //    count++;
-    //  }
+    //   if(k%2==1) {
+    //     speakerarr[count]={category: speaklist[k-1][0],speaklist:[]};
+    //     for (m = 0, n = speaklist[k].length; m < n; m++) {
+    //       var speakerdata =[];
+    //       speakerdata= this.getSpeaker(speaklist[k][m]);
+    //       // console.log(speakerdata);
+    //       if(speakerdata!=null){
+    //         speakerarr[count].speaklist.push(speakerdata);
+    //         _updatedspeakers.push(speakerdata);
+    //       }
+    //     }
+    //     count++;
+    //   }
     // }
     // // console.log(speakerarr);
     // for(i=0,j=speakerarr.length;i<j;i++){
     //   speakerarr[i].speaklist = sortbyLname(speakerarr[i].speaklist);
     // }
-    // // console.log(speakerarr);
-    // return speakerarr;
-    return _speakerssorted;
-  };
-  this.getSpeaker=function(id){
-    for(i=0;i<_speakers.length;i++){
-      if(_speakers[i].id == id){
-        _speakers[i]['speaker_title'] = _speakers[i]['speaker_title'] ? String(_speakers[i]['speaker_title']).replace(/<[^>]+>/gm, '') : '';
-        return _speakers[i];
-      }
-    }
-    return null;
-  };
-  this.getSpeakerUniversity=function(){
+    // _speakerssorted=speakerarr;
+    // // console.log(_speakerssorted);
     // var speaker = _updatedspeakers;
     // // _speakers;
     // // var speakerarr = {};
@@ -581,22 +488,22 @@ angular.module('starter.services', [])
     // for(var i=0;i<speaker.length;i++){
     //   var uni = $filter('uppercase')(speaker[i]['speaker_title']);
     //   if( uni===undefined || uni.length!=0) {
-    //       if(check(sortedarr,uni)){
-    //         sortedarr[ucount]={university:uni,speakerdata:[]};
-    //         sortedarr[ucount].speakerdata.push(speaker[i]);
-    //         ucount++;
-    //       }else{
-    //         sortedarr[speakcount].speakerdata.push(speaker[i]);
-    //       }
+    //     if(check(sortedarr,uni)){
+    //       sortedarr[ucount]={university:uni,speakerdata:[]};
+    //       sortedarr[ucount].speakerdata.push(speaker[i]);
+    //       ucount++;
+    //     }else{
+    //       sortedarr[speakcount].speakerdata.push(speaker[i]);
+    //     }
     //   }else{
-    //       uni = "UNIVERSITY NOT SPECIFIED";
-    //       if(check(sortedarr,uni)){
-    //         sortedarr[ucount]={university:uni,speakerdata:[]};
-    //         sortedarr[ucount].speakerdata.push(speaker[i]);
-    //         ucount++;
-    //       }else{
-    //         sortedarr[speakcount].speakerdata.push(speaker[i]);
-    //       }
+    //     uni = "UNIVERSITY NOT SPECIFIED";
+    //     if(check(sortedarr,uni)){
+    //       sortedarr[ucount]={university:uni,speakerdata:[]};
+    //       sortedarr[ucount].speakerdata.push(speaker[i]);
+    //       ucount++;
+    //     }else{
+    //       sortedarr[speakcount].speakerdata.push(speaker[i]);
+    //     }
     //
     //   }
     // }
@@ -604,8 +511,112 @@ angular.module('starter.services', [])
     //   sortedarr[k].speakerdata = sortbyLname(sortedarr[k].speakerdata);
     // }
     // sortedarr = sortingByKey(sortedarr,'university');
-    // return sortedarr;
-    return _universityspeaker;
+    // _universityspeaker=sortedarr;
+    // // console.log(_universityspeaker);
+    // return _universityspeaker;
+  }
+  this.getSortedSpeaker=function(){
+    // // var speaker = _speakers;
+    var speaklist = [];
+    var speakerarr=[];
+    angular.forEach(_speakerscat,function (value,key) {
+      speaklist.push(value);
+    });
+    for (i=0,j=speaklist.length;i<j;i++){
+      speaklist[i] = speaklist[i].split(',');
+    }
+    var count=0;
+    for (k=0,l=speaklist.length;k<l;k++){
+     if(k%2==1) {
+       speakerarr[count]={category: speaklist[k-1][0],speaklist:[]};
+       for (m = 0, n = speaklist[k].length; m < n; m++) {
+         var speakerdata =[];
+         speakerdata= this.getSpeaker(speaklist[k][m]);
+         // console.log(speakerdata);
+         if(speakerdata!=null){
+           speakerarr[count].speaklist.push(speakerdata);
+           _updatedspeakers.push(speakerdata);
+         }
+       }
+       count++;
+     }
+    }
+    // console.log(speakerarr);
+    for(i=0,j=speakerarr.length;i<j;i++){
+      speakerarr[i].speaklist = sortbyLname(speakerarr[i].speaklist);
+    }
+    // console.log(speakerarr);
+    return speakerarr;
+    // return _speakerssorted;
+  };
+  this.getSpeaker=function(id){
+    for(i=0;i<_speakers.length;i++){
+      if(_speakers[i].id == id){
+        _speakers[i]['speaker_title'] = _speakers[i]['speaker_title'] ? String(_speakers[i]['speaker_title']).replace(/<[^>]+>/gm, '') : '';
+        return _speakers[i];
+      }
+    }
+    return null;
+  };
+  this.getSpeakerUniversity=function(){
+    var speaker = _updatedspeakers;
+    // _speakers;
+    // var speakerarr = {};
+    var sortedarr = [];
+    var ucount=0;
+    var speakcount;
+    var check = function (array,key) {
+      if(array.length!=0){
+        for(var i=0,j=array.length;i<j;i++){
+          if(array[i].university == key){
+            speakcount=i;
+            return false;
+          }
+        }
+        return true;
+      }else{
+        return true;
+      }
+    }
+    for(var i=0;i<speaker.length;i++){
+      var uni = $filter('uppercase')(speaker[i]['speaker_title']);
+      if( uni===undefined || uni.length!=0) {
+          if(check(sortedarr,uni)){
+            sortedarr[ucount]={university:uni,speakerdata:[]};
+            sortedarr[ucount].speakerdata.push(speaker[i]);
+            ucount++;
+          }else{
+            sortedarr[speakcount].speakerdata.push(speaker[i]);
+          }
+      }else{
+          uni = "UNIVERSITY NOT SPECIFIED";
+          if(check(sortedarr,uni)){
+            sortedarr[ucount]={university:uni,speakerdata:[]};
+            sortedarr[ucount].speakerdata.push(speaker[i]);
+            ucount++;
+          }else{
+            sortedarr[speakcount].speakerdata.push(speaker[i]);
+          }
+
+      }
+    }
+    for(var k=0,l=sortedarr.length;k<l;k++) {
+      sortedarr[k].speakerdata = sortbyLname(sortedarr[k].speakerdata);
+    }
+    for(var k=0,l=sortedarr.length;k<l;k++) {
+      var unispeakdata=[];
+      unispeakdata=sortedarr[k].speakerdata;
+      for(var m=1,n=unispeakdata.length;m<n;m++){
+        if(unispeakdata[m].speakerdata.title==unispeakdata[m-1].speakerdata.title){
+          unispeakdata.splice(m,1);
+          n=n-1;
+        }
+      }
+      sortedarr[k].speakerdata = unispeakdata;
+    }
+    sortedarr = sortingByKey(sortedarr,'university');
+    return sortedarr;
+    // return _universityspeaker;
   }
 }])
 
