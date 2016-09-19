@@ -65,11 +65,9 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   // Form data for the login modal
-
   $scope.loginData = {};
   var token = window.localStorage.getItem("token");
   $scope.flogin = true;
-
   $scope.check = function (){
     token = window.localStorage.getItem("token");
     // console.log("From Menu: "+$scope.flogin)
@@ -107,7 +105,6 @@ angular.module('starter.controllers', [])
   // //     $scope.closeLogin();
   // //   }, 1000);
   // // };
-
   $scope.getData = function () {
     $timeout(function () {
       agendaService.getAgenda().then(function (response) {
@@ -115,20 +112,20 @@ angular.module('starter.controllers', [])
     },0);
     $timeout(function () {
       speakerService.getSpeakerCategory().then(function (response) {
-      });
-      speakerService.getSpeakers().then(function (response) {
         });
+      speakerService.getSpeakers().then(function (response) {
+        $scope.spkdata = speakerService.getParsing();
+        });
+      $scope.getSpeakersorted();
     },0);
     $timeout(function () {
       sponsorService.getSponsors().then(function (response){
-      });
+        });
     },0);
     $timeout(function () {
       exhibitorService.getExhibitors().then(function (response) {
         });
     },0);
-    $scope.agendalist = agendaService.getParsingData();
-    console.log($scope.agendalist);
   }
   $scope.getData();
   $scope.openinbrowser = function(url){
@@ -172,7 +169,6 @@ angular.module('starter.controllers', [])
       $state.transitionTo('app.profile',{reload:true});;
     }
   };
-
   $scope.logout = function () {
     ngFB.logout().then(
       function (response) {
@@ -204,7 +200,12 @@ angular.module('starter.controllers', [])
         navigator.notification.alert("An error occurred while logging out.",null,"Alert","Close");
       })
   };
-  console.log(window.localStorage.getItem("favourites"));
+  $scope.getSpeakersorted = function () {
+    // $scope.universe = "Universe and other things :)";
+    // $scope.elsewhere = "Good day sir";
+    // $scope.fish = "Perfectly well";
+    console.log("Inside ON");
+  };
 })
 
 // .controller('LoginCtrl',function ($scope, $rootScope,$ionicModal, $timeout, $location, $state, $ionicHistory, $ionicLoading, ngFB) {
@@ -421,9 +422,22 @@ angular.module('starter.controllers', [])
   //
   // $scope.getData();
 }])
-.controller('AgendaBlockCtrl', ['$scope','agendaService','$stateParams',function($scope, agendaService,$stateParams){
-    $scope.timeblock = agendaService.getBlockDetail($stateParams.dayId);
+.controller('AgendaBlockCtrl', ['$scope','agendaService','$stateParams','$state',function($scope, agendaService,$stateParams,$state){
+    // $scope.timeblock = agendaService.getBlockDetail($stateParams.dayId);
+    $scope.sessiondata = agendaService.getSessionList($stateParams.dayId);
     $scope.dayof = agendaService.getDay($stateParams.dayId);
+    $scope.sessionpage=function (id) {
+      if(id>10){
+        $state.transitionTo('app.singleAgenda',{agendaId:id});
+      }else{
+        $state.transitionTo('app.breaksession',{breakId:id});
+        //$scope.sessions = agendaService.getSession(id);
+        //$scope.sessions = agendaService.getSession(id);
+      }
+    }
+  }])
+.controller('AgendaSessionCtrl', ['$scope','agendaService','$stateParams',function($scope, agendaService,$stateParams){
+     $scope.sessions = agendaService.getSession($stateParams.breakId);
   }])
 .controller('AgendaListCtrl', ['$scope','agendaService','$stateParams',function($scope, agendaService,$stateParams){
     $scope.eventinfo = agendaService.getEventDetail($stateParams.blockId);
@@ -432,42 +446,35 @@ angular.module('starter.controllers', [])
 .controller('AgendaDetailCtrl', ['$scope','agendaService','$stateParams',function($scope, agendaService,$stateParams){
   var favour = [];
   $scope.spkcheck = true;
-  // console.log($stateParams.agendaId);
   $scope.agendaItem = agendaService.getAgendaDetail($stateParams.agendaId);
-  console.log(JSON.parse($scope.agendaItem));
   if($scope.agendaItem.speakerlist.length!=0){
     $scope.spkcheck = true;
   }else{
     $scope.spkcheck = false;
   }
+
   $scope.fav=function(agendaId){
-    console.log(window.localStorage.getItem("favourites"));
-    console.log(agendaId);
-    // if(window.localStorage.getItem("favourites")!=null) {
-    //   favour = JSON.parse(window.localStorage.getItem("favourites"));
-    //   if (favour.length == undefined) {
-    //     var temp = favour;
-    //     favour = [];
-    //     favour.push(temp);
-    //   }
-    //   else {
-    //     if (favour.indexOf(agendaId) == -1) {
-    //       favour.push(agendaId);
-    //       navigator.notification.alert("Added to your schedule.",null,"Alert","Close")
-    //       // alert("Added to your schedule.")
-    //     }
-    //     else {
-    //       navigator.notification.alert("Already in your schedule.",null,"Alert","Close")
-    //       // alert("Already in your schedule.")
-    //     }
-    //   }
-    // }else{
-    //     favour.push(agendaId);
-    //     navigator.notification.alert("Added to your schedule.",null,"Alert","Close");
-    //     // alert("Added to your schedule.");
-    //   }
-    //
-    // window.localStorage.setItem("favourites",JSON.stringify(favour));
+    if(window.localStorage.getItem("favourites")!=null) {
+      favour = JSON.parse(window.localStorage.getItem("favourites"));
+      if (favour.length == undefined) {
+        var temp = favour;
+        favour = [];
+        favour.push(temp);
+      }
+      else {
+        if (favour.indexOf(agendaId) == -1) {
+          favour.push(agendaId);
+          navigator.notification.alert("Added to your schedule.",null,"Alert","Close");
+        }
+        else {
+          navigator.notification.alert("Already in your schedule.",null,"Alert","Close");
+        }
+      }
+    }else{
+        favour.push(agendaId);
+        navigator.notification.alert("Added to your schedule.",null,"Alert","Close");
+      }
+    window.localStorage.setItem("favourites",JSON.stringify(favour));
   }
 }])
 
@@ -516,8 +523,8 @@ angular.module('starter.controllers', [])
 }])
 .controller('myscheduleDetailCtrl', ['$scope','agendaService','$stateParams',function($scope, agendaService,$stateParams){
   $scope.spkcheck = true;
-  // $scope.AgendaItem = agendaService.getAgendaDetail($stateParams.bookId);
-  $scope.AgendaItem = agendaService.getSingleAgenda($stateParams.bookId);
+  $scope.AgendaItem = agendaService.getAgendaDetail($stateParams.bookId);
+  // $scope.AgendaItem = agendaService.getSingleAgenda($stateParams.bookId);
   if($scope.AgendaItem.speakerlist.length!=0){
     $scope.spkcheck = true;
   }else{
@@ -535,15 +542,15 @@ angular.module('starter.controllers', [])
 //     });
 // })
  // this is a service http request
-.controller('SpeakersCtl', ['$scope','speakerService',function($scope, speakerService) {
-      $scope.booleanspeaker = true;
-      $scope.speakerSorted = speakerService.getParsing();
-      $scope.sortedspeaker = speakerService.getSortedSpeaker();
-      $scope.universitySpeaker = speakerService.getSpeakerUniversity();
-      $scope.toggleCustom = function(){
-        $scope.booleanspeaker = $scope.booleanspeaker === false ? true: false
-      }
-  // $scope.getData = function () {
+.controller('SpeakersCtl', ['$scope','speakerService','$ionicLoading',function($scope, speakerService,$ionicLoading) {
+  $scope.booleanspeaker = true;
+  // $scope.speakerSorted = speakerService.getParsing();
+  $scope.sortedspeaker = speakerService.getSortedSpeaker();
+  $scope.universitySpeaker = speakerService.getSpeakerUniversity();
+  $scope.toggleCustom = function(){
+  $scope.booleanspeaker = $scope.booleanspeaker === false ? true: false
+  }
+// $scope.getData = function () {
   //   speakerService.getSpeakers().then(function (response) {
   //     $scope.booleanspeaker = true;
   //     $scope.speakerdata=response;

@@ -1,12 +1,12 @@
 <ion-view view-title="Speakers">
-  <ion-content>
+  <ion-content  q>
     <ion-toggle toggle-class="toggle-calm" ng-click="toggleCustom()">Switch To University View</ion-toggle>
     <div ng-show="booleanspeaker" ng-repeat="speakcat in sortedspeaker">
       <ion-item class="item-divider wrapping-list" >
         {{speakcat.category}}
       </ion-item>
       <ion-list>
-        <ion-item class="wrapping-list" ng-repeat="speaker in speakcat.speaklist" href="#/app/speakers/{{speaker.speakerdata.id}}" >
+        <ion-item class="wrapping-list" ng-repeat="speaker in speakcat.speaklist track by $index" href="#/app/speakers/{{speaker.speakerdata.id}}" >
           {{speaker.lname}} {{speaker.fname}}
         </ion-item>
       </ion-list>
@@ -22,7 +22,7 @@
         {{speakers.university}}
       </ion-item>
       <ion-list>
-        <ion-item class="wrapping-list" ng-repeat="speaker in speakers.speakerdata" href="#/app/speakers/{{speaker.speakerdata.id}}" >
+        <ion-item class="wrapping-list" ng-repeat="speaker in speakers.speakerdata track by $index" href="#/app/speakers/{{speaker.speakerdata.id}}" >
           {{speaker.lname}} {{speaker.fname}}
         </ion-item>
       </ion-list>

@@ -1,18 +1,13 @@
-<ion-view view-title="{{dayof}}">
+<ion-view view-title="{{sessions.title}}">
   <ion-nav-buttons side="right">
     <a class="button bar-balanced" ng-click="returnHome()">Home
     </a>
   </ion-nav-buttons>
   <ion-content class="content-below">
     <ion-list>
-
-      <!--<ion-item class="wrapping-list" ng-repeat="singlesession in sessiondata" ng-show="breakout" href="#/app/agenda/singleday/singleblock/{{singlesession.id}}">-->
-        <!--{{singlesession.session_time | dformat}} - {{singlesession.title}}-->
-      <!--</ion-item>-->
-      <ion-item class="wrapping-list" ng-repeat="singlesession in sessiondata" ng-click="sessionpage(singlesession.id)">
-        {{singlesession.session_time | dformat}} - {{singlesession.title}}
-        </ion-item>
-
+      <ion-item class="wrapping-list" ng-repeat="single in sessions.sessions" href="#/app/agenda/singleday/singleblock/{{single.id}}">
+        {{single.session_time | dformat}} - {{single.title}}
+      </ion-item>
         <!--<ion-item ng-repeat="singleblock in timeblock" href="#/app/agenda/singleday/{{singleblock.bid}}">-->
         <!--{{singleblock.blot}}-->
       <!--</ion-item>-->

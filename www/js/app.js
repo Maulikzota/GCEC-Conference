@@ -90,6 +90,15 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','an
       }
     }
   })
+  .state('app.breaksession', {
+    url: '/agenda/breaksession/:breakId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/breakSession.html',
+        controller: 'AgendaSessionCtrl'
+      }
+    }
+  })
 
   .state('app.speakers', {
     url: '/speakers',

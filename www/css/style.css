@@ -16,6 +16,13 @@
   width: 90%;
 }
 
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #444;
+  fill: #444;
+}
+
 .back{
   background: url('../img/autumn.jpg');
   /*background-image: url("../img/autumn.jpg");*/
