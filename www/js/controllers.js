@@ -200,12 +200,12 @@ angular.module('starter.controllers', [])
         navigator.notification.alert("An error occurred while logging out.",null,"Alert","Close");
       })
   };
-  $scope.getSpeakersorted = function () {
-    // $scope.universe = "Universe and other things :)";
-    // $scope.elsewhere = "Good day sir";
-    // $scope.fish = "Perfectly well";
-    console.log("Inside ON");
-  };
+  // $scope.getSpeakersorted = function () {
+  //   // $scope.universe = "Universe and other things :)";
+  //   // $scope.elsewhere = "Good day sir";
+  //   // $scope.fish = "Perfectly well";
+  //   console.log("Inside ON");
+  // };
 })
 
 // .controller('LoginCtrl',function ($scope, $rootScope,$ionicModal, $timeout, $location, $state, $ionicHistory, $ionicLoading, ngFB) {
