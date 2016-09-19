@@ -482,29 +482,44 @@ angular.module('starter.controllers', [])
   var removelist = [];
   var agendalist = [];
   var agendalist = JSON.parse(window.localStorage.getItem("favourites"));
-  if(agendalist||agendalist.length!=0) {
-    $scope.AgendaList = agendaService.getAgendaList(agendalist);
-    //alert($scope.AgendaList.length)
-    $scope.doRefresh = function () {
-      $scope.AgendaList = agendaService.getAgendaList(JSON.parse(window.localStorage.getItem("favourites")));
-      $scope.$broadcast('scroll.refreshComplete');
-    }
-    $scope.$watch('day', function () {
-      if ($scope.inputty == "pday") {
-        $scope.output = "OK!";
-      } else {
-        $scope.output = "NOT OK!";
+  if(agendalist!=null) {
+    if(agendalist.length!=0){
+      $scope.AgendaList = agendaService.getAgendaList(agendalist);
+      //alert($scope.AgendaList.length)
+      $scope.doRefresh = function () {
+        $scope.AgendaList = agendaService.getAgendaList(JSON.parse(window.localStorage.getItem("favourites")));
+        $scope.$broadcast('scroll.refreshComplete');
       }
-    });
-    $scope.del = function (id) {
-      removelist = JSON.parse(window.localStorage.getItem("favourites"));
-      for (var i = 0; i < removelist.length; i++) {
-        if (removelist.indexOf(id) != -1) {
-          removelist.splice(removelist.indexOf(id), 1);
+      $scope.$watch('day', function () {
+        if ($scope.inputty == "pday") {
+          $scope.output = "OK!";
+        } else {
+          $scope.output = "NOT OK!";
         }
+      });
+      $scope.del = function (id) {
+        removelist = JSON.parse(window.localStorage.getItem("favourites"));
+        for (var i = 0; i < removelist.length; i++) {
+          if (removelist.indexOf(id) != -1) {
+            removelist.splice(removelist.indexOf(id), 1);
+          }
+        }
+        window.localStorage.setItem("favourites", JSON.stringify(removelist));
+        $scope.AgendaList = agendaService.getAgendaList(removelist);
       }
-      window.localStorage.setItem("favourites", JSON.stringify(removelist));
-      $scope.AgendaList = agendaService.getAgendaList(removelist);
+    }
+    else{
+      navigator.notification.alert("Please add session to your schedule.",null,"Alert","Close");
+      $timeout(function () {
+        // $ionicLoading.hide();
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+        $ionicHistory.nextViewOptions({
+          disableBack: true,
+          historyRoot: true
+        });
+        $state.transitionTo('app.agenda',{reload:true});
+      }, 10);
     }
   }else{
     navigator.notification.alert("Please add session to your schedule.",null,"Alert","Close");
@@ -517,7 +532,7 @@ angular.module('starter.controllers', [])
         historyRoot: true
       });
       $state.transitionTo('app.agenda',{reload:true});
-    }, 30);
+    }, 10);
   }
 
 }])
