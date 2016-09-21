@@ -18,6 +18,9 @@ angular.module('starter.services', [])
       .success(function (response) {
         deferred.resolve(response);
         _agenda=response;
+        for(var i=0;i<_agenda.length;i++) {
+          _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
+        }
       });
     return deferred.promise;
   };
@@ -38,11 +41,7 @@ angular.module('starter.services', [])
     var sat = [];
     for (var j = 0; j < array.length; j++) {
       var tempday = $filter('date')((parseInt(array[j].session_date) + 86400) * 1000, "EEEE");
-      // var tempday = $filter('date')((parseInt(array[j].session_date)) * 1000, "EEEE");
       switch (tempday) {
-        case 'Sunday':
-          sun.push(array[j]);
-          break;
         case 'Monday':
           mon.push(array[j]);
           break;
@@ -58,12 +57,18 @@ angular.module('starter.services', [])
         case 'Friday':
           fri.push(array[j]);
           break;
-        default :
+        case 'Saturday':
           sat.push(array[j]);
+          break;
+        default :
+          sun.push(array[j]);
           break;
       }
     }
     //day.push(wed);
+    // if(wed.length>0){
+    //   day.push(wed);
+    // }
     if(thu.length>0){
       day.push(thu);
     }
@@ -163,7 +168,6 @@ angular.module('starter.services', [])
       var ptimebk = parseInt($filter('limitTo')(temp,2));
       var cslot = parseInt(temp.replace(":",""));
       var temptime = (parseInt(array[0].session_date) + 86400)* 1000 ;
-      // var temptime = (parseInt(array[0].session_date))* 1000 ;
       var tempday = $filter('date')(temptime, "EEEE");
       eventinfo.push(array[0]);
       var pamvar = " am";
@@ -253,7 +257,6 @@ angular.module('starter.services', [])
     var data2=[]
     for(var i=0;i<daysort.length;i++){
       var dayofWeek = $filter('date')((parseInt(daysort[i][0].session_date)+86400)*1000, "fullDate");
-      // var dayofWeek = $filter('date')((parseInt(daysort[i][0].session_date))*1000, "EEEE");
       // data2.push({'did':i,'day':dayofWeek,'block':timeblock(daysort[i])});
       data2.push({'did':i,'day':dayofWeek,'session':breakclub(daysort[i])});
     }
@@ -306,15 +309,17 @@ angular.module('starter.services', [])
   };
   this.getAgendaDetail=function(id){
     var spkidlist=[];
-    // var agenda = [];
-    // agenda = _agenda;
+    var agenda = [];
+    // var agenda = _agenda;
     var list;
     var init = 5;
     for(var i=0;i<_agenda.length;i++){
       if(_agenda[i].id==id){
-        _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
-        _agenda[i]['session_date'] = parseInt(_agenda[i]['session_date']) + 86400;
-        list = _agenda[i]['session_speakers_list'];
+        agenda = _agenda[i];
+        // _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
+        // agenda['session_date'] = parseInt(_agenda[i]['session_date']) + 86400;
+        agenda['session_date'] = parseInt(_agenda[i]['session_date']);
+        list = agenda['session_speakers_list'];
         if(list!=undefined) {
           var list1 = list.split(':');
           for (var k = 5, j = list1.length; k < j; k++) {
@@ -325,12 +330,12 @@ angular.module('starter.services', [])
               init+=3;
             }
           }
-          _agenda[i].speakerlist = spkidlist;
+          agenda.speakerlist = spkidlist;
         }
         else{
-          _agenda[i].speakerlist =[];
+          agenda.speakerlist =[];
         }
-        return _agenda[i];
+        return agenda;
       }
     }
     return null;
@@ -359,8 +364,6 @@ angular.module('starter.services', [])
     var newarr = {};
     for(var i = 0; i < dayarr.length; i++) {
       idDay = $filter('date')((parseInt(dayarr[i][0].session_date) + 86400) * 1000, "fullDate");
-      // idDay = $filter('date')((parseInt(dayarr[i][0].session_date)) * 1000, "fullDate");
-      //alert(idDay)
       newarr[i]={day:idDay,agenda:[]};
       for(var j=0;j<dayarr[i].length;j++){
         newarr[i].agenda.push(dayarr[i][j]);

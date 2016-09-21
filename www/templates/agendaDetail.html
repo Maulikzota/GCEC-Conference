@@ -5,7 +5,7 @@
    </ion-nav-buttons>
       <ion-content>
           <ion-list>
-            <ion-item>Date: {{agendaItem.session_date *1000 | date:'MM-dd-yyyy'}}</ion-item>
+            <ion-item>Date: {{(agendaItem.session_date +86400) * 1000 | date:'MM-dd-yyyy'}}</ion-item>
             <ion-item>Start Time: {{agendaItem.session_time| dformat}}</ion-item>
             <ion-item>End Time: {{agendaItem.session_end_time | dformat}}</ion-item>
             <ion-item class="wrapping-list"> Location: {{agendaItem.location}}</ion-item>

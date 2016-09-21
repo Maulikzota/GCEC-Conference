@@ -116,7 +116,7 @@ angular.module('starter.controllers', [])
       speakerService.getSpeakers().then(function (response) {
         $scope.spkdata = speakerService.getParsing();
         });
-      $scope.getSpeakersorted();
+      // $scope.getSpeakersorted();
     },0);
     $timeout(function () {
       sponsorService.getSponsors().then(function (response){
@@ -137,8 +137,8 @@ angular.module('starter.controllers', [])
       alert("Path if")
       // $ionicNavBarDelegate.showBackButton(false);
     else
-      $ionicHistory.clearHistory();
-      $ionicHistory.clearCache();
+      // $ionicHistory.clearHistory();
+      // $ionicHistory.clearCache();
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
@@ -447,7 +447,7 @@ angular.module('starter.controllers', [])
   var favour = [];
   $scope.spkcheck = true;
   $scope.agendaItem = agendaService.getAgendaDetail($stateParams.agendaId);
-  if($scope.agendaItem.speakerlist.length!=0){
+  if($scope.agendaItem.speakerlist!=null){
     $scope.spkcheck = true;
   }else{
     $scope.spkcheck = false;
@@ -490,13 +490,13 @@ angular.module('starter.controllers', [])
         $scope.AgendaList = agendaService.getAgendaList(JSON.parse(window.localStorage.getItem("favourites")));
         $scope.$broadcast('scroll.refreshComplete');
       }
-      $scope.$watch('day', function () {
-        if ($scope.inputty == "pday") {
-          $scope.output = "OK!";
-        } else {
-          $scope.output = "NOT OK!";
-        }
-      });
+      // $scope.$watch('day', function () {
+      //   if ($scope.inputty == "pday") {
+      //     $scope.output = "OK!";
+      //   } else {
+      //     $scope.output = "NOT OK!";
+      //   }
+      // });
       $scope.del = function (id) {
         removelist = JSON.parse(window.localStorage.getItem("favourites"));
         for (var i = 0; i < removelist.length; i++) {
@@ -540,7 +540,7 @@ angular.module('starter.controllers', [])
   $scope.spkcheck = true;
   $scope.AgendaItem = agendaService.getAgendaDetail($stateParams.bookId);
   // $scope.AgendaItem = agendaService.getSingleAgenda($stateParams.bookId);
-  if($scope.AgendaItem.speakerlist.length!=0){
+  if($scope.AgendaItem.speakerlist!=null){
     $scope.spkcheck = true;
   }else{
     $scope.spkcheck = false;
