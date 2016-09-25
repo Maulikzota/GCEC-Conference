@@ -65,10 +65,6 @@ angular.module('starter.services', [])
           break;
       }
     }
-    //day.push(wed);
-    // if(wed.length>0){
-    //   day.push(wed);
-    // }
     if(thu.length>0){
       day.push(thu);
     }
@@ -78,86 +74,9 @@ angular.module('starter.services', [])
     if(sat.length>0){
       day.push(sat);
     }
-    // if(sun.length>0){
-    //   day.push(sun);
-    // }
-    // day.push(thu);
-    // day.push(fri);
-    // day.push(sat);
-    // day.push(sun);
     return day;
   }
 
-  //this.getDayDetail = function(data){
-  //var data1 = sortingByKey(data, 'session_time');
-  // this.getDayDetail=function(){
-  //   var data1 = sortingByKey(_agenda, 'session_time');
-  //   function timeblock(array){
-  //     var ar=[];
-  //     var eventinfo=[];
-  //     var bcount = 0;
-  //     var temp = $filter('date')(array[0].session_time, "H");
-  //     var ptimebk = parseInt($filter('limitTo')(temp,2));
-  //     var cslot = parseInt(temp.replace(":",""));
-  //     var temptime = (parseInt(array[0].session_date) + 86400)* 1000 ;
-  //     // var temptime = (parseInt(array[0].session_date))* 1000 ;
-  //     var tempday = $filter('date')(temptime, "EEEE");
-  //     eventinfo.push(array[0]);
-  //     var pamvar = " am";
-  //     var camvar = " am";
-  //     var endvar = ptimebk+1;
-  //     for(var k=1;k<array.length;k++){
-  //       var temp = $filter('date')(array[k].session_time, "H");
-  //       var cslot = parseInt(temp.replace(":",""));
-  //       var ctimebk = parseInt($filter('limitTo')(temp,2));
-  //       //alert("cslot: "+cslot);
-  //       if(ptimebk!=ctimebk){
-  //         endvar = ptimebk+1;
-  //         if(ptimebk>=12){
-  //           pamvar = " pm";
-  //         }
-  //         if(endvar>=12){
-  //           camvar = " pm";
-  //         }
-  //         if(ptimebk>12){
-  //           ptimebk = ptimebk - 12;
-  //         }
-  //         if(endvar>12){
-  //           endvar = endvar - 12;
-  //         }
-  //         ar.push({'bid':bcount,'blot':ptimebk+pamvar+" - "+endvar+camvar,'eventinfo':eventinfo});
-  //         bcount++;
-  //         eventinfo=[];
-  //         ptimebk=ctimebk;
-  //       }
-  //       if(0<=cslot<100){
-  //         eventinfo.push(array[k]);
-  //         ptimebk=parseInt($filter('limitTo')(temp,2));
-  //       }
-  //     }
-  //     endvar = ptimebk+1
-  //     if(endvar>=12){
-  //       camvar = " pm";
-  //     }
-  //     if(ptimebk>12){
-  //       ptimebk = ptimebk - 12;
-  //       endvar = endvar - 12;
-  //       pamvar = " pm";
-  //     }
-  //
-  //     ar.push({'bid':bcount,'blot':ptimebk+pamvar+" - "+endvar+camvar,'eventinfo':eventinfo});
-  //     return ar;
-  //   }
-  //   var daysort = sortingByDay(data1);
-  //   var data2=[]
-  //   for(var i=0;i<daysort.length;i++){
-  //     var dayofWeek = $filter('date')((parseInt(daysort[i][0].session_date)+86400)*1000, "EEEE");
-  //     // var dayofWeek = $filter('date')((parseInt(daysort[i][0].session_date))*1000, "EEEE");
-  //     data2.push({'did':i,'day':dayofWeek,'block':timeblock(daysort[i])});
-  //   }
-  //   _daydata = data2;
-  //   return data2;
-  // }
   this.getDayDetail=function(){
     var data1 = sortingByKey(_agenda, 'session_time');
     function timeblock(array){
@@ -177,7 +96,6 @@ angular.module('starter.services', [])
         var temp = $filter('date')(array[k].session_time, "H");
         var cslot = parseInt(temp.replace(":",""));
         var ctimebk = parseInt($filter('limitTo')(temp,2));
-        //alert("cslot: "+cslot);
         if(ptimebk!=ctimebk){
           endvar = ptimebk+1;
           if(ptimebk>=12){
@@ -257,7 +175,6 @@ angular.module('starter.services', [])
     var data2=[]
     for(var i=0;i<daysort.length;i++){
       var dayofWeek = $filter('date')((parseInt(daysort[i][0].session_date)+86400)*1000, "fullDate");
-      // data2.push({'did':i,'day':dayofWeek,'block':timeblock(daysort[i])});
       data2.push({'did':i,'day':dayofWeek,'session':breakclub(daysort[i])});
     }
     _daydata = data2;
@@ -316,8 +233,6 @@ angular.module('starter.services', [])
     for(var i=0;i<_agenda.length;i++){
       if(_agenda[i].id==id){
         agenda = _agenda[i];
-        // _agenda[i]['content'] = JSON.parse(_agenda[i]['content']);
-        // agenda['session_date'] = parseInt(_agenda[i]['session_date']) + 86400;
         agenda['session_date'] = parseInt(_agenda[i]['session_date']);
         list = agenda['session_speakers_list'];
         if(list!=undefined) {
@@ -438,85 +353,6 @@ angular.module('starter.services', [])
         }
       }
     }
-
-    // var speaklist = [];
-    // var speakerarr=[];
-    // angular.forEach(_speakerscat,function (value,key) {
-    //   speaklist.push(value);
-    // });
-    // for (i=0,j=speaklist.length;i<j;i++){
-    //   speaklist[i] = speaklist[i].split(',');
-    // }
-    // var count=0;
-    // for (k=0,l=speaklist.length;k<l;k++){
-    //   if(k%2==1) {
-    //     speakerarr[count]={category: speaklist[k-1][0],speaklist:[]};
-    //     for (m = 0, n = speaklist[k].length; m < n; m++) {
-    //       var speakerdata =[];
-    //       speakerdata= this.getSpeaker(speaklist[k][m]);
-    //       // console.log(speakerdata);
-    //       if(speakerdata!=null){
-    //         speakerarr[count].speaklist.push(speakerdata);
-    //         _updatedspeakers.push(speakerdata);
-    //       }
-    //     }
-    //     count++;
-    //   }
-    // }
-    // // console.log(speakerarr);
-    // for(i=0,j=speakerarr.length;i<j;i++){
-    //   speakerarr[i].speaklist = sortbyLname(speakerarr[i].speaklist);
-    // }
-    // _speakerssorted=speakerarr;
-    // // console.log(_speakerssorted);
-    // var speaker = _updatedspeakers;
-    // // _speakers;
-    // // var speakerarr = {};
-    // var sortedarr = [];
-    // var ucount=0;
-    // var speakcount;
-    // var check = function (array,key) {
-    //   if(array.length!=0){
-    //     for(var i=0,j=array.length;i<j;i++){
-    //       if(array[i].university == key){
-    //         speakcount=i;
-    //         return false;
-    //       }
-    //     }
-    //     return true;
-    //   }else{
-    //     return true;
-    //   }
-    // }
-    // for(var i=0;i<speaker.length;i++){
-    //   var uni = $filter('uppercase')(speaker[i]['speaker_title']);
-    //   if( uni===undefined || uni.length!=0) {
-    //     if(check(sortedarr,uni)){
-    //       sortedarr[ucount]={university:uni,speakerdata:[]};
-    //       sortedarr[ucount].speakerdata.push(speaker[i]);
-    //       ucount++;
-    //     }else{
-    //       sortedarr[speakcount].speakerdata.push(speaker[i]);
-    //     }
-    //   }else{
-    //     uni = "UNIVERSITY NOT SPECIFIED";
-    //     if(check(sortedarr,uni)){
-    //       sortedarr[ucount]={university:uni,speakerdata:[]};
-    //       sortedarr[ucount].speakerdata.push(speaker[i]);
-    //       ucount++;
-    //     }else{
-    //       sortedarr[speakcount].speakerdata.push(speaker[i]);
-    //     }
-    //
-    //   }
-    // }
-    // for(var k=0,l=sortedarr.length;k<l;k++) {
-    //   sortedarr[k].speakerdata = sortbyLname(sortedarr[k].speakerdata);
-    // }
-    // sortedarr = sortingByKey(sortedarr,'university');
-    // _universityspeaker=sortedarr;
-    // // console.log(_universityspeaker);
-    // return _universityspeaker;
   }
   this.getSortedSpeaker=function(){
     // // var speaker = _speakers;
@@ -544,13 +380,10 @@ angular.module('starter.services', [])
        count++;
      }
     }
-    // console.log(speakerarr);
     for(i=0,j=speakerarr.length;i<j;i++){
       speakerarr[i].speaklist = sortbyLname(speakerarr[i].speaklist);
     }
-    // console.log(speakerarr);
     return speakerarr;
-    // return _speakerssorted;
   };
   this.getSpeaker=function(id){
     for(i=0;i<_speakers.length;i++){
@@ -563,8 +396,6 @@ angular.module('starter.services', [])
   };
   this.getSpeakerUniversity=function(){
     var speaker = _updatedspeakers;
-    // _speakers;
-    // var speakerarr = {};
     var sortedarr = [];
     var ucount=0;
     var speakcount;
@@ -619,7 +450,6 @@ angular.module('starter.services', [])
     }
     sortedarr = sortingByKey(sortedarr,'university');
     return sortedarr;
-    // return _universityspeaker;
   }
 }])
 
@@ -691,7 +521,6 @@ angular.module('starter.services', [])
       var rank;
       if (check(sortedspon, tier)) {
         rank = getrank(tier);
-        //alert("Rank: "+rank)
         sortedspon[tcount] = {tier: tier, rank: rank,sponsorsdata: []}
         sortedspon[tcount].sponsorsdata.push(_sponsors[i]);
         tcount++;
@@ -703,13 +532,8 @@ angular.module('starter.services', [])
       sortedspon[i].sponsorsdata=sortingByKey(sortedspon[i].sponsorsdata,'title');
     }
     sortedspon = sortingByKey(sortedspon,'rank');
-    //alert(sortedspon[1].sponsorsdata.length+"----"+sortedspon[1].sponsorsdata[0].title)
     return sortedspon;
   }
-
-
-
-
 }])
 
 .service('exhibitorService',['$http','$q', function($http,$q) {
@@ -766,4 +590,84 @@ angular.module('starter.services', [])
     };
   }])
 
+.service('attendeesService',['$http','$q','$filter',function ($http,$q,$filter) {
+  _attendeesdata =[];
+  var sortingByKey = function (array,key) {
+    return array.sort(function(a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+  this.getAttendees=function(){
+    var deferred = $q.defer();
+    // /Users/MaulikZota/GCEC2016/platforms/ios/www/Registrated.csv
+    $http.get("Registrated.csv")
+      .success(function (response) {
+        deferred.resolve(response);
+        var attendees = response;
+        attendees = attendees.split(/\r\n|\n/);
+        var headers = attendees[0].split(',');
+        var lines = [];
+        for (var i = 1, j = attendees.length - 1; i < j; i++) {
+          var data = attendees[i].split(',');
+          var tarr = {fname:data[0],lname:data[1],uni:data[2]};
+          lines.push(tarr);
+        }
+        _attendeesdata=lines;
+      });
+    return deferred.promise;
+  };
+  this.getAttendeesData = function () {
+    var lines=sortingByKey(_attendeesdata,'lname');
+    console.log(lines);
+    return lines;
+  }
+  this.getUniAttendies=function () {
+    var data = _attendeesdata;
+    var sortedarr = [];
+    var ucount=0;
+    var attcount;
+    var check = function (array,key) {
+      if(array.length!=0){
+        for(var i=0,j=array.length;i<j;i++){
+          if(array[i].uni == key){
+            attcount=i;
+            return false;
+          }
+        }
+        return true;
+      }else{
+        return true;
+      }
+    }
+    for(var i=0;i<data.length;i++){
+      var uni = $filter('uppercase')(data[i]['uni']);
+      if( uni===undefined || uni.length!=0) {
+        if(check(sortedarr,uni)){
+          sortedarr[ucount]={uni:uni,attendiedata:[]};
+          sortedarr[ucount].attendiedata.push(data[i]);
+          ucount++;
+        }else{
+          sortedarr[attcount].attendiedata.push(data[i]);
+        }
+      }else{
+        uni = "UNIVERSITY NOT SPECIFIED";
+        if(check(sortedarr,uni)){
+          sortedarr[ucount]={uni:uni,attendiedata:[]};
+          sortedarr[ucount].attendiedata.push(data[i]);
+          ucount++;
+        }else{
+          sortedarr[attcount].attendiedata.push(data[i]);
+        }
+
+      }
+    }
+    for(var k=0,l=sortedarr.length;k<l;k++) {
+      sortedarr[k].attendiedata = sortingByKey(sortedarr[k].attendiedata,'lname');
+    }
+    sortedarr = sortingByKey(sortedarr,'uni');
+    console.log(sortedarr);
+    return sortedarr;
+  }
+}])
 ;

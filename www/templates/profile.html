@@ -4,22 +4,15 @@
       <ion-item>
         <div style="text-align: center">
           <img class="center-image" src="http://graph.facebook.com/{{user.id}}/picture?width=200&height=200"/>
-          <!--src="http://graph.facebook.com/{{user.id}}/picture?width=200&height=200"-->
           <br>
           {{user.name}}
         </div>
       </ion-item>
       <ion-label>Message</ion-label>
           <textarea ng-model="sharing" name="message" id="msgText" class="textarea" rows="2" style="margin-left: 20px"></textarea>
-      <!--<ion-item>-->
-        <!--<button class="button button-block button-positive" ng-click="pic(sharing)">Take a picture</button>-->
-        <!--</ion-item>-->
       <ion-item>
-        <button class="button button-block button-positive" ng-click="sharefunc(sharing)">Share on Facebook GECE Page</button>
+        <button class="button button-block button-positive" ng-click="sharefunc(sharing)">Share on Facebook GCEC Page</button>
       </ion-item>
-      <!--<ion-item>-->
-        <!--<img ng-show="imgURI!==undefined" ng-src="{{imgURI}}">-->
-      <!--</ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>

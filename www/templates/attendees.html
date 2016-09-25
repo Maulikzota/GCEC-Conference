@@ -1,5 +1,22 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Attendees">
   <ion-content>
-    <h1>Playlist</h1>
+    <ion-toggle toggle-class="toggle-calm" ng-click="toggleCustom1()">Switch To University View</ion-toggle>
+    <div ng-show="booleanattendie" class="item-text-wrap wrapping-list">
+      <ion-list>
+        <ion-item ng-repeat="attendie in attendees" class="item-text-wrap wrapping-list">
+          {{attendie.fname}} {{attendie.lname}} - {{attendie.uni}}
+        </ion-item>
+      </ion-list>
+    </div>
+    <div ng-hide="booleanattendie" ng-repeat="uni in uniattendees">
+      <ion-item class="item-divider wrapping-list" >
+        {{uni.uni}}
+      </ion-item>
+      <ion-list>
+        <ion-item class="wrapping-list" ng-repeat="attendie in uni.attendiedata">
+          {{attendie.fname}} {{attendie.lname}}
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-view>

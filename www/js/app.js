@@ -123,7 +123,8 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','an
     url: '/attendees',
     views: {
       'menuContent': {
-        templateUrl: 'templates/attendees.html'
+        templateUrl: 'templates/attendees.html',
+        controller: 'AttendeesCtl'
       }
     }
   })

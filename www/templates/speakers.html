@@ -1,5 +1,5 @@
 <ion-view view-title="Speakers">
-  <ion-content  q>
+  <ion-content>
     <ion-toggle toggle-class="toggle-calm" ng-click="toggleCustom()">Switch To University View</ion-toggle>
     <div ng-show="booleanspeaker" ng-repeat="speakcat in sortedspeaker">
       <ion-item class="item-divider wrapping-list" >
@@ -11,12 +11,6 @@
         </ion-item>
       </ion-list>
     </div>
-
-    <!--<ion-list ng-show="booleanspeaker">-->
-      <!--<ion-item ng-repeat="speaker in sortedspeaker" type="item-text-wrap" href="#/app/speakers/{{speaker.speakerdata.id}}">-->
-        <!--{{speaker.lname}} {{speaker.fname}}-->
-    <!--</ion-list>-->
-
     <div ng-hide="booleanspeaker" ng-repeat="speakers in universitySpeaker">
       <ion-item class="item-divider wrapping-list" >
         {{speakers.university}}
@@ -30,15 +24,3 @@
 
   </ion-content>
 </ion-view>
-
-
-<!--<div ng-controller="AppCtrl">-->
-  <!--<button ng-click="toggleCustom()">Custom</button>-->
-  <!--<span ng-hide="custom">From:-->
-            <!--<input type="text" id="from" />-->
-        <!--</span>-->
-  <!--<span ng-hide="custom">To:-->
-            <!--<input type="text" id="to" />-->
-        <!--</span>-->
-  <!--<span ng-show="custom"></span>-->
-<!--</div>-->
